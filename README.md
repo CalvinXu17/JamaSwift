@@ -15,6 +15,7 @@ Jama Swift所有类与方法均与Jama一致，具体用法直接搜索Jama即�
 不需要第三方库的支持，均使用Swift原生编写
 
 # Demo
+```swift
 let aa:[[Double]] = [[10.0,20.0,30.0],[12.0,24.0,46.0],[34.0,58.0,12.0]]
 do {
     let mat = try Matrix(paramArrayOfDouble: aa)
@@ -34,3 +35,4 @@ do {
     } catch {
     print(error)
 }
+```
