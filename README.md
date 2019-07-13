@@ -3,6 +3,7 @@
     Swift for Linear Algebra(Vector/Matrix).
     It is translated from Jama(Java Matrix Package) and I call it Sama.
     Thanks for Jama's source and I translate it to Swift.
+    If there is something wrong, please tell me as soon as possible.
 
 # Usage
     It's Class and Method are the same as Jama, so you can google Jama for it's usage.
@@ -13,6 +14,7 @@
     我称之为Sama
     Jama Swift所有类与方法均与Jama一致，具体用法直接搜索Jama即可
     不需要第三方库的支持，均使用Swift原生编写
+    如有错误，欢迎大家指正
     
 # Demo
 ```swift
