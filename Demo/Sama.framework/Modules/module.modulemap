@@ -1,0 +1,11 @@
+framework module Sama {
+  umbrella header "Sama.h"
+
+  export *
+  module * { export * }
+}
+
+module Sama.Swift {
+    header "Sama-Swift.h"
+    requires objc
+}
