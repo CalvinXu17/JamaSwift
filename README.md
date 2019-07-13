@@ -1,14 +1,14 @@
 # JamaSwift
 Jama for Swift
 Swift for Linear Algebra(Vector/Matrix).
-It is translated from Jama(Java Matrix Package).
+It is translated from Jama(Java Matrix Package) and I call it Sama.
 Thanks for Jama's source and I translate it to Swift.
 
 # Usage
 It's Class and Method are the same as Jama, so you can google Jama for it's usage.
 
 # 欢迎加群905506227交流讨论
-Jama Swift是基于Jama(Java Matrix Package)翻译成swift版本的一款可以实现线性代数向量、矩阵运算的库
+Jama Swift是基于Jama(Java Matrix Package)翻译成swift版本的一款可以实现线性代数向量、矩阵运算的库，我称之为Sama
 感谢Jama团队开放的源代码
 Jama Swift所有类与方法均与Jama一致，具体用法直接搜索Jama即可
 
