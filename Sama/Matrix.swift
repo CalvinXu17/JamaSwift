@@ -537,10 +537,10 @@ public class Matrix: Codable {
         return try self.m == self.n ? LUDecomposition(A: self).solve(B: paramMatrix) : QRDecomposition(paramMatrix: self).solve(paramMatrix: paramMatrix)
     }
     
-    //    public func solveTranspose(paramMatrix: Matrix) -> Matrix
-    //    {
-    //        return transpose().solve(paramMatrix: paramMatrix.transpose())
-    //    }
+    public func solveTranspose(paramMatrix: Matrix) throws -> Matrix
+    {
+        return try transpose().solve(paramMatrix: paramMatrix.transpose())
+    }
     
     public func inverse() throws -> Matrix
     {
