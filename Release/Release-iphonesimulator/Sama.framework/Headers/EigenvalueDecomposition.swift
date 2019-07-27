@@ -62,20 +62,19 @@ public class EigenvalueDecomposition: Codable {
         }
         
         // Householder reduction to tridiagonal form.
-        
-        for i in (1 ... n - 1).reversed() {
+        for i in stride(from: n - 1, through: 1, by: -1) {
             
             // Scale to avoid under/overflow.
             
             var scale: Double = 0.0
             var h: Double = 0.0
-            for k in 0 ..< i {
+            for k in stride(from: 0, to: i, by: 1) {
                 scale = scale + abs(d[k])
             }
             
             if (scale == 0.0) {
                 e[i] = d[i-1]
-                for j in 0 ..< i {
+                for j in stride(from: 0, to: i, by: 1) {
                     d[j] = V[i-1][j]
                     V[i][j] = 0.0
                     V[j][i] = 0.0
@@ -84,7 +83,7 @@ public class EigenvalueDecomposition: Codable {
                 
                 // Generate Householder vector.
                 
-                for k in 0 ..< i {
+                for k in stride(from: 0, to: i, by: 1) {
                     d[k] /= scale
                     h += d[k] * d[k]
                 }
@@ -102,7 +101,7 @@ public class EigenvalueDecomposition: Codable {
                 
                 // Apply similarity transformation to remaining columns.
                 
-                for j in 0 ..< i {
+                for j in stride(from: 0, to: i, by: 1) {
                     f = d[j]
                     V[j][i] = f
                     g = e[j] + V[j][j] * f
@@ -113,7 +112,7 @@ public class EigenvalueDecomposition: Codable {
                     e[j] = g
                 }
                 f = 0.0
-                for j in 0 ..< i {
+                for j in stride(from: 0, to: i, by: 1) {
                     e[j] /= h
                     f += e[j] * d[j]
                 }
@@ -121,10 +120,10 @@ public class EigenvalueDecomposition: Codable {
                 for j in 0 ..< i {
                     e[j] -= hh * d[j]
                 }
-                for j in 0 ..< i {
+                for j in stride(from: 0, to: i, by: 1) {
                     f = d[j]
                     g = e[j]
-                    for k in j ... i - 1 {
+                    for k in stride(from: j, through: i - 1, by: 1) {
                         V[k][j] -= (f * e[k] + g * d[k])
                     }
                     d[j] = V[i - 1][j]
@@ -141,24 +140,24 @@ public class EigenvalueDecomposition: Codable {
             V[i][i] = 1.0
             let h = d[i + 1]
             if (h != 0.0) {
-                for k in 0 ... i {
+                for k in stride(from: 0, through: i, by: 1) {
                     d[k] = V[k][i+1] / h
                 }
-                for j in 0 ... i {
+                for j in stride(from: 0, through: i, by: 1) {
                     var g: Double = 0.0
                     for k in 0 ... i {
                         g += V[k][i+1] * V[k][j]
                     }
-                    for k in 0 ... i {
+                    for k in stride(from: 0, through: i, by: 1) {
                         V[k][j] -= g * d[k]
                     }
                 }
             }
-            for k in 0 ... i {
+            for k in stride(from: 0, through: i, by: 1) {
                 V[k][i + 1] = 0.0
             }
         }
-        for j in 0 ..< n {
+        for j in stride(from: 0, to: n, by: 1) {
             d[j] = V[n - 1][j]
             V[n - 1][j] = 0.0
         }
@@ -175,7 +174,7 @@ public class EigenvalueDecomposition: Codable {
         //  Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
         //  Fortran subroutine in EISPACK.
         
-        for i in 1 ..< n {
+        for i in stride(from: 1, to: n, by: 1) {
             e[i-1] = e[i]
         }
         e[n-1] = 0.0
@@ -230,7 +229,7 @@ public class EigenvalueDecomposition: Codable {
                     let el1 = e[l + 1]
                     var s: Double = 0.0
                     var s2: Double = 0.0
-                    for i in (l ... m - 1).reversed() {
+                    for i in stride(from: m - 1, through: l, by: -1) {
                         c3 = c2
                         c2 = c
                         s2 = s
@@ -245,7 +244,7 @@ public class EigenvalueDecomposition: Codable {
                         
                         // Accumulate transformation.
                         
-                        for k in 0 ..< n {
+                        for k in stride(from: 0, to: n, by: 1) {
                             h = V[k][i+1]
                             V[k][i+1] = s * V[k][i] + c * h
                             V[k][i] = c * V[k][i] - s * h
@@ -265,10 +264,10 @@ public class EigenvalueDecomposition: Codable {
         
         // Sort eigenvalues and corresponding vectors.
         
-        for i in 0 ..< n - 1 {
+        for i in stride(from: 0, to: n - 1, by: 1) {
             var k: Int = i
             var p: Double = d[i]
-            for j in i + 1 ..< n {
+            for j in stride(from: i + 1, to: n, by: 1) {
                 if (d[j] < p) {
                     k = j
                     p = d[j]
@@ -277,7 +276,7 @@ public class EigenvalueDecomposition: Codable {
             if (k != i) {
                 d[k] = d[i]
                 d[i] = p
-                for j in 0 ..< n {
+                for j in stride(from: 0, to: n, by: 1) {
                     p = V[j][i]
                     V[j][i] = V[j][k]
                     V[j][k] = p
@@ -298,12 +297,12 @@ public class EigenvalueDecomposition: Codable {
         let low = 0
         let high = n - 1
         
-        for m in low + 1 ... high - 1 {
+        for m in stride(from: low + 1, through: high - 1, by: 1) {
             
             // Scale column.
             
             var scale: Double = 0.0
-            for i in m ... high {
+            for i in stride(from: m, through: high, by: 1) {
                 scale = scale + abs(H[i][m-1])
             }
             if (scale != 0.0) {
@@ -311,7 +310,7 @@ public class EigenvalueDecomposition: Codable {
                 // Compute Householder transformation.
                 
                 var h: Double = 0.0
-                for i in (m ... high).reversed() {
+                for i in stride(from: high, through: m, by: -1) {
                     ort[i] = H[i][m-1] / scale
                     h += ort[i] * ort[i]
                 }
@@ -327,22 +326,22 @@ public class EigenvalueDecomposition: Codable {
                 
                 for j in m ..< n {
                     var f: Double = 0.0
-                    for i in (m ... high).reversed() {
+                    for i in stride(from: high, through: m, by: -1) {
                         f += ort[i]*H[i][j]
                     }
                     f = f/h
-                    for i in m ... high {
+                    for i in stride(from: m, through: high, by: 1) {
                         H[i][j] -= f * ort[i]
                     }
                 }
                 
-                for i in 0 ... high {
+                for i in stride(from: 0, through: high, by: 1) {
                     var f: Double = 0.0
-                    for j in (m ... high).reversed() {
+                    for j in stride(from: high, through: m, by: -1) {
                         f += ort[j] * H[i][j]
                     }
                     f = f/h
-                    for j in m ... high {
+                    for j in stride(from: m, through: high, by: 1) {
                         H[i][j] -= f * ort[j]
                     }
                 }
@@ -359,19 +358,19 @@ public class EigenvalueDecomposition: Codable {
             }
         }
         
-        for  m in (low + 1 ... high - 1).reversed() {
+        for  m in stride(from: high - 1, through: low + 1, by: -1) {
             if (H[m][m-1] != 0.0) {
-                for i in m + 1 ... high {
+                for i in stride(from: m + 1, through: high, by: 1) {
                     ort[i] = H[i][m-1]
                 }
-                for j in m ... high {
+                for j in stride(from: m, through: high, by: 1) {
                     var g: Double = 0.0
-                    for i in m ... high {
+                    for i in stride(from: m, through: high, by: 1) {
                         g += ort[i] * V[i][j]
                     }
                     // Double division avoids possible underflow
                     g = (g / ort[m]) / H[m][m-1]
-                    for i in m ... high {
+                    for i in stride(from: m, through: high, by: 1) {
                         V[i][j] += g * ort[i]
                     }
                 }
@@ -432,7 +431,7 @@ public class EigenvalueDecomposition: Codable {
         // Store roots isolated by balanc and compute matrix norm
         
         var norm: Double = 0.0
-        for i in 0 ..< nn {
+        for i in stride(from: 0, to: nn, by: 1) {
             if (i < low || i > high) {
                 d[i] = H[i][i]
                 e[i] = 0.0
@@ -507,7 +506,7 @@ public class EigenvalueDecomposition: Codable {
                     
                     // Row modification
                     
-                    for j in n - 1 ..< nn {
+                    for j in stride(from: n - 1, to: nn, by: 1) {
                         z = H[n-1][j]
                         H[n-1][j] = q * z + p * H[n][j]
                         H[n][j] = q * H[n][j] - p * z
@@ -515,7 +514,7 @@ public class EigenvalueDecomposition: Codable {
                     
                     // Column modification
                     
-                    for i in 0 ... n {
+                    for i in stride(from: 0, through: n, by: 1) {
                         z = H[i][n-1]
                         H[i][n-1] = q * z + p * H[i][n]
                         H[i][n] = q * H[i][n] - p * z
@@ -523,7 +522,7 @@ public class EigenvalueDecomposition: Codable {
                     
                     // Accumulate transformations
                     
-                    for i in low ... high {
+                    for i in stride(from: low, through: high, by: 1) {
                         z = V[i][n-1]
                         V[i][n-1] = q * z + p * V[i][n]
                         V[i][n] = q * V[i][n] - p * z
@@ -558,7 +557,7 @@ public class EigenvalueDecomposition: Codable {
                 
                 if (iter == 10) {
                     exshift += x
-                    for i in low ... n {
+                    for i in stride(from: low, through: n, by: 1) {
                         H[i][i] -= x
                     }
                     s = abs(H[n][n-1]) + abs(H[n-1][n-2])
@@ -623,7 +622,7 @@ public class EigenvalueDecomposition: Codable {
                 // Double QR step involving rows l:n and columns m:n
                 
                 
-                for k in m ... n - 1 {
+                for k in stride(from: m, through: n - 1, by: 1) {
                     let notlast: Bool = (k != n - 1)
                     if (k != m) {
                         p = H[k][k-1]
@@ -657,7 +656,7 @@ public class EigenvalueDecomposition: Codable {
                         
                         // Row modification
                         
-                        for j in k ..< nn {
+                        for j in stride(from: k, to: nn, by: 1) {
                             p = H[k][j] + q * H[k+1][j]
                             if (notlast) {
                                 p = p + r * H[k+2][j]
@@ -668,8 +667,7 @@ public class EigenvalueDecomposition: Codable {
                         }
                         
                         // Column modification
-                        
-                        for  i in 0 ... min(n, k + 3) {
+                        for  i in stride(from: 0, through: min(n, k + 3), by: 1) {
                             p = x * H[i][k] + y * H[i][k+1]
                             if (notlast) {
                                 p = p + z * H[i][k+2]
@@ -681,7 +679,7 @@ public class EigenvalueDecomposition: Codable {
                         
                         // Accumulate transformations
                         
-                        for i in low ... high {
+                        for i in stride(from: low, through: high, by: 1) {
                             p = x * V[i][k] + y * V[i][k+1]
                             if (notlast) {
                                 p = p + z * V[i][k+2]
@@ -701,7 +699,7 @@ public class EigenvalueDecomposition: Codable {
             return
         }
         
-        for n in (0 ... nn - 1).reversed() {
+        for n in stride(from: nn - 1, through: 0, by: -1) {
             p = d[n]
             q = e[n]
             
@@ -711,10 +709,10 @@ public class EigenvalueDecomposition: Codable {
                 var l = n
                 H[n][n] = 1.0
                 if n - 1 >= 0 {
-                    for i in (0 ... n - 1).reversed() {
+                    for i in stride(from: n - 1, through: 0, by: -1) {
                         w = H[i][i] - p
                         r = 0.0
-                        for j in l ... n {
+                        for j in stride(from: l, through: n, by: 1) {
                             r = r + H[i][j] * H[j][n]
                         }
                         if (e[i] < 0.0) {
@@ -748,7 +746,7 @@ public class EigenvalueDecomposition: Codable {
                             
                             t = abs(H[i][n])
                             if ((eps * t) * t > 1) {
-                                for j in i ... n {
+                                for j in stride(from: i, through: n, by: 1) {
                                     H[j][n] = H[j][n] / t
                                 }
                             }
@@ -773,12 +771,12 @@ public class EigenvalueDecomposition: Codable {
                 }
                 H[n][n-1] = 0.0
                 H[n][n] = 1.0
-                for i in (0 ... n - 2).reversed() {
+                for i in stride(from: n - 2, through: 0, by: -1) {
                     var ra: Double = 0.0
                     var sa: Double = 0.0
                     var vr: Double = 0.0
                     var vi: Double = 0.0
-                    for j in l ... n {
+                    for j in stride(from: l, through: n, by: 1) {
                         ra = ra + H[i][j] * H[j][n-1]
                         sa = sa + H[i][j] * H[j][n]
                     }
@@ -822,7 +820,7 @@ public class EigenvalueDecomposition: Codable {
                         
                         t = max(abs(H[i][n-1]), abs(H[i][n]))
                         if ((eps * t) * t > 1) {
-                            for j in i ... n {
+                            for j in stride(from: i, through: n, by: 1) {
                                 H[j][n-1] = H[j][n-1] / t
                                 H[j][n] = H[j][n] / t
                             }
@@ -834,9 +832,9 @@ public class EigenvalueDecomposition: Codable {
         
         // Vectors of isolated roots
         
-        for i in 0 ..< nn {
+        for i in stride(from: 0, to: nn, by: 1) {
             if (i < low || i > high) {
-                for j in i ..< nn {
+                for j in stride(from: i, to: nn, by: 1) {
                     V[i][j] = H[i][j]
                 }
             }
@@ -844,10 +842,10 @@ public class EigenvalueDecomposition: Codable {
         
         // Back transformation to get eigenvectors of original matrix
         
-        for j in (low ... nn - 1).reversed() {
-            for i in low ... high {
+        for j in stride(from: nn - 1, through: low, by: -1) {
+            for i in stride(from: low, through: high, by: 1) {
                 z = 0.0
-                for k in low ... min(j,high) {
+                for k in stride(from: low, through: min(j,high), by: 1) {
                     z = z + V[i][k] * H[k][j]
                 }
                 V[i][j] = z
@@ -865,7 +863,7 @@ public class EigenvalueDecomposition: Codable {
      @param Arg    Square matrix
      */
     
-    public init (Arg: Matrix) {
+    public init (Arg: Matrix) throws {
         self.n = Arg.getColumnDimension()
         self.V = [[Double]].init(repeating: [Double].init(repeating: 0.0, count: self.n), count: self.n)
         self.d = [Double].init(repeating: 0.0, count: self.n)
@@ -879,7 +877,11 @@ public class EigenvalueDecomposition: Codable {
         while jj < n && (issymmetric == true) {
             ii = 0
             while ii < n && (issymmetric == true) {
-                self.issymmetric = (Arg.A[ii][jj] == Arg.A[jj][ii])
+                if ii < Arg.A.count && jj < Arg.A[ii].count && jj < Arg.A.count && ii < Arg.A[jj].count {
+                    self.issymmetric = (Arg.A[ii][jj] == Arg.A[jj][ii])
+                } else {
+                    throw MatrixError.ArrayIndexOutOfBoundsException(info: "index outof range")
+                }
                 ii += 1
             }
             jj += 1
@@ -894,7 +896,11 @@ public class EigenvalueDecomposition: Codable {
         if self.issymmetric == true {
             for i in 0 ..< n {
                 for j in 0 ..< n {
-                    V[i][j] = Arg.A[i][j]
+                    if i < Arg.A.count && j < Arg.A[i].count {
+                        V[i][j] = Arg.A[i][j]
+                    } else {
+                        throw MatrixError.ArrayIndexOutOfBoundsException(info: "index outof range")
+                    }
                 }
             }
             

@@ -136,7 +136,7 @@ public class SingularValueDecomposition : Codable
                 }
                 self.U[i4][i4] = 1.0
             }
-            for i4 in (0 ... i1 - 1).reversed() {
+            for i4 in stride(from: i1 - 1, through: 0, by: -1) {
                 if (self.s[i4] != 0.0)
                 {
                     for i6 in i4 + 1 ..< i
@@ -170,7 +170,7 @@ public class SingularValueDecomposition : Codable
             }
         }
         if (k != 0) {
-            for i4 in (0 ... self.n - 1).reversed()
+            for i4 in stride(from: self.n - 1, through: 0, by: -1)
             {
                 if (((i4 < i2 ? 1 : 0) & (arrayOfDouble1[i4] != 0.0 ? 1 : 0)) != 0) {
                     for i6 in i4 + 1 ..< i
@@ -198,7 +198,7 @@ public class SingularValueDecomposition : Codable
         while (i3 > 0)
         {
             var i9 = 0
-            for i99 in (-1 ... i3 - 2).reversed()
+            for i99 in stride(from: i3 - 2, through: -1, by: -1)
             {
                 i9 = i99
                 if (i99 == -1) {
@@ -218,7 +218,7 @@ public class SingularValueDecomposition : Codable
             else
             {
                 var i11 = 0
-                for i111 in (i9 ... i3 - 1).reversed()
+                for i111 in stride(from: i3 - 1, through: i9, by: -1)
                 {
                     i11 = i111
                     if (i111 == i9) {
@@ -255,7 +255,7 @@ public class SingularValueDecomposition : Codable
             case 1:
                 d5 = arrayOfDouble1[(i3 - 2)]
                 arrayOfDouble1[(i3 - 2)] = 0.0
-                for i13 in (i9 ... i3 - 2).reversed()
+                for i13 in stride(from: i3 - 2, through: i9, by: -1)
                 {
                     d9 = hypot(self.s[i13], d5)
                     d11 = self.s[i13] / d9

@@ -21,13 +21,13 @@ public class CholeskyDecomposition: Codable
         self.L = [[Double]].init(repeating: [Double].init(repeating: 0.0, count: self.n), count: self.n)
         self.isspd = (paramMatrix.getColumnDimension() == self.n)
         
-        for i in 0 ..< self.n {
+        for i in stride(from: 0, to: self.n, by: 1) {
             var arrayOfDouble1: [Double] = self.L[i]
             var d1: Double = 0.0
-            for j in 0 ..< i {
+            for j in stride(from: 0, to: i, by: 1) {
                 var arrayOfDouble2: [Double] = self.L[j]
                 var d2: Double = 0.0
-                for k in 0 ..< j {
+                for k in stride(from: 0, to: j, by: 1) {
                     d2 += arrayOfDouble2[k] * arrayOfDouble1[k]
                 }
                 d2 = (arrayOfDouble[i][j] - d2) / self.L[j][j]
@@ -40,7 +40,7 @@ public class CholeskyDecomposition: Codable
             d1 = arrayOfDouble[i][i] - d1
             self.isspd = self.isspd && ( d1 > 0.0 )
             self.L[i][i] = sqrt(Double(max(d1, 0.0)))
-            for j in i + 1 ..< self.n {
+            for j in stride(from: i + 1, to: self.n, by: 1) {
                 self.L[i][j] = 0.0
             }
         }
@@ -67,17 +67,17 @@ public class CholeskyDecomposition: Codable
         }
         var arrayOfDouble: [[Double]] = paramMatrix.getArrayCopy()
         let i: Int = paramMatrix.getColumnDimension()
-        for j in 0 ..< self.n {
-            for k in 0 ..< i {
-                for m in 0 ..< j {
+        for j in stride(from: 0, to: self.n, by: 1) {
+            for k in stride(from: 0, to: i, by: 1) {
+                for m in stride(from: 0, to: j, by: 1) {
                     arrayOfDouble[j][k] -= arrayOfDouble[m][k] * self.L[j][m]
                 }
                 arrayOfDouble[j][k] /= self.L[j][j]
             }
         }
-        for j in (0 ... self.n - 1).reversed()  {
-            for k in 0 ..< i {
-                for m in j + 1 ..< self.n {
+        for j in stride(from: self.n - 1, through: 0, by: -1)  {
+            for k in stride(from: 0, to: i, by: 1) {
+                for m in stride(from: j + 1, to: self.n, by: 1) {
                     arrayOfDouble[j][k] -= arrayOfDouble[m][k] * self.L[m][j]
                 }
                 arrayOfDouble[j][k] /= self.L[j][j]

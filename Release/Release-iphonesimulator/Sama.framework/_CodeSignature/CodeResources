@@ -6,23 +6,23 @@
 	<dict>
 		<key>Headers/CholeskyDecomposition.swift</key>
 		<data>
-		ZzcpWFrIrWydN7GaN9j2x+u8yLE=
+		WaXvZacp+lnhnPjnKL+FKx5mLtw=
 		</data>
 		<key>Headers/EigenvalueDecomposition.swift</key>
 		<data>
-		IiBfcc+VU3j/HNcYcMF9vTzURtk=
+		OuAaYwB5iAVWjz/nViTwApeROO4=
 		</data>
 		<key>Headers/LUDecomposition.swift</key>
 		<data>
-		AntTc2BDAdTJCkiEGplChoRHYlE=
+		Nj8NbtFUWr0in37UiZ+N8skgOBc=
 		</data>
 		<key>Headers/Matrix.swift</key>
 		<data>
-		BJiBh+mvRYObw+KNPDfLWJ1icyw=
+		w9yCqTp+wnsgwnUmHlMBqN/C+YE=
 		</data>
 		<key>Headers/QRDecomposition.swift</key>
 		<data>
-		f8fcTcpIxR6xq+b86ba/BaS1MGI=
+		XVm/acRKSi3/4TmZ1QYV5EmSD8Q=
 		</data>
 		<key>Headers/Sama-Swift.h</key>
 		<data>
@@ -34,27 +34,27 @@
 		</data>
 		<key>Headers/SingularValueDecomposition.swift</key>
 		<data>
-		5RKazjO5+Ng2R3OASfLzk/X5MHk=
+		N5zSteWyX17W0ZBvQiJF3BMyMsE=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		uWwxen1JMH118pbqWk0ekjmKINA=
+		xKHzjIG/Ragi4u0SnUK3T0TsOtw=
 		</data>
 		<key>Modules/Sama.swiftmodule/i386.swiftdoc</key>
 		<data>
-		kQZo1oNeZlMhUznZR3Idexg2kvM=
+		tOzh3JYQ7DbmecQBqLJDvXktNhQ=
 		</data>
 		<key>Modules/Sama.swiftmodule/i386.swiftmodule</key>
 		<data>
-		ynE0V+wcmHgAIdDErF83HL3CrJk=
+		r77i0mkXFgQejQEuomhFelmyG7o=
 		</data>
 		<key>Modules/Sama.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		vByaoXdTF/FglSqrgM5zJ+Ue6/s=
+		pCjhltbOonv5ksebCAvugT+yMpw=
 		</data>
 		<key>Modules/Sama.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		ZL9lRN5RwVi6Uls1OnwlfGl+Gqo=
+		1Lv8IGpviViFsXyXWK/O6xUyaRo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -67,55 +67,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ZzcpWFrIrWydN7GaN9j2x+u8yLE=
+			WaXvZacp+lnhnPjnKL+FKx5mLtw=
 			</data>
 			<key>hash2</key>
 			<data>
-			oYFUyQuQwn37QB/dgPY2NFt20QPbhBLCIPeAeqei3tc=
+			Pn0iAsph8L9dLg5hs0H9ojmTqfYZaDjwMvL56PjHC4s=
 			</data>
 		</dict>
 		<key>Headers/EigenvalueDecomposition.swift</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			IiBfcc+VU3j/HNcYcMF9vTzURtk=
+			OuAaYwB5iAVWjz/nViTwApeROO4=
 			</data>
 			<key>hash2</key>
 			<data>
-			shlILSquOXY4C1Gtjn/xkW1WZE83ug3uhs4DD+g5SxQ=
+			cNxQj5Cu7vSw/H5k1jAUQlKFhqV1zagkJtrtUtxKSSk=
 			</data>
 		</dict>
 		<key>Headers/LUDecomposition.swift</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			AntTc2BDAdTJCkiEGplChoRHYlE=
+			Nj8NbtFUWr0in37UiZ+N8skgOBc=
 			</data>
 			<key>hash2</key>
 			<data>
-			FKlU18mQLHgvQptvtIIuSjLmO+MnkpNiiuMPGckdOoQ=
+			tp1EzurH/ZN2CPXspfDWfHR6umZUshaqAu/IwyyljPI=
 			</data>
 		</dict>
 		<key>Headers/Matrix.swift</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BJiBh+mvRYObw+KNPDfLWJ1icyw=
+			w9yCqTp+wnsgwnUmHlMBqN/C+YE=
 			</data>
 			<key>hash2</key>
 			<data>
-			HslAFGAmig7GPhitDsvol4gTBK22opx2Zbrrq3qZEFo=
+			HuQzkf2y3DwOQOVRJh22Y0PK5fW+ISFgz4EJiXK9qSs=
 			</data>
 		</dict>
 		<key>Headers/QRDecomposition.swift</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			f8fcTcpIxR6xq+b86ba/BaS1MGI=
+			XVm/acRKSi3/4TmZ1QYV5EmSD8Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			KvPzFZqbzvjjExmcPg7lkfDNV7rCt1mtxvgKRHudP7Q=
+			49QI68SnXqbk7WaIlHZvlA31K22YlyUl+StOscHvQxo=
 			</data>
 		</dict>
 		<key>Headers/Sama-Swift.h</key>
@@ -144,55 +144,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5RKazjO5+Ng2R3OASfLzk/X5MHk=
+			N5zSteWyX17W0ZBvQiJF3BMyMsE=
 			</data>
 			<key>hash2</key>
 			<data>
-			vnNXp2/dK5znGKB1Iow7ZtwNNuncYdWlsgTkS5+Dvf0=
+			Z+C8xAPL4Bz/b6cvc/ELLYpo3GQqCgb7qAxKI8PJn7U=
 			</data>
 		</dict>
 		<key>Modules/Sama.swiftmodule/i386.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kQZo1oNeZlMhUznZR3Idexg2kvM=
+			tOzh3JYQ7DbmecQBqLJDvXktNhQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			/IwMCmHmzzsOR3MkLOdjkGthWMNOzqdPPIYkP/J4XCY=
+			PhTLgVcDs4gxxtsMzIkM1120sRm+Fq4TrkjreGeIdD0=
 			</data>
 		</dict>
 		<key>Modules/Sama.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ynE0V+wcmHgAIdDErF83HL3CrJk=
+			r77i0mkXFgQejQEuomhFelmyG7o=
 			</data>
 			<key>hash2</key>
 			<data>
-			CEZWcIMaGadP8Y3OdWnP0Niq21sH/eHB+qMnLYWE4+8=
+			vS5I8wifZLOOz0NEClmVMw7CM36Q42yeYnCq81rySsM=
 			</data>
 		</dict>
 		<key>Modules/Sama.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vByaoXdTF/FglSqrgM5zJ+Ue6/s=
+			pCjhltbOonv5ksebCAvugT+yMpw=
 			</data>
 			<key>hash2</key>
 			<data>
-			WYtmUx0zeEieOOBak1HY0ZIOAjJk4e0zPrVVc8TQLXg=
+			8+7o46Z/cidyJfqFgeHsRUNYg7zE6b5hCaeIchyhE8g=
 			</data>
 		</dict>
 		<key>Modules/Sama.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ZL9lRN5RwVi6Uls1OnwlfGl+Gqo=
+			1Lv8IGpviViFsXyXWK/O6xUyaRo=
 			</data>
 			<key>hash2</key>
 			<data>
-			smB0prluq1tQoFEJmD92eAEwWlRagV36a0LQNrM8NLM=
+			5Z5rib+Bp5cogQtbfgHrcxTOwT3HOSStkMfLyMWM8JY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
