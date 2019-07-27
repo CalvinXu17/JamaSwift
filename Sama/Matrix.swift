@@ -36,7 +36,7 @@ public class Matrix: Codable {
     {
         self.m = paramArrayOfDouble.count
         self.n = paramArrayOfDouble[0].count
-        for i in 0 ..< self.m {
+        for i in stride(from: 0, to: self.m, by: 1) {
             if (paramArrayOfDouble[i].count != self.n) {
                 throw MatrixError.IllegalArgumentException(info: "All rows must have the same length.")
             }
@@ -60,8 +60,8 @@ public class Matrix: Codable {
         }
         self.A =  [[Double]].init(repeating: [Double].init(repeating: 0.0, count: self.n), count: paramInt)
         
-        for i in 0 ..< paramInt {
-            for j in 0 ..< self.n {
+        for i in stride(from: 0, to: paramInt, by: 1) {
+            for j in stride(from: 0, to: self.n, by: 1) {
                 self.A[i][j] = paramArrayOfDouble[(i + j * paramInt)]
             }
         }
@@ -72,7 +72,7 @@ public class Matrix: Codable {
         let i = paramArrayOfDouble.count
         let j = paramArrayOfDouble[0].count
         let localMatrix = Matrix(paramInt1: i, paramInt2: j)
-        for k in 0 ..< i
+        for k in stride(from: 0, to: i, by: 1)
         {
             if (paramArrayOfDouble[k].count != j) {
                 throw MatrixError.IllegalArgumentException(info: "All rows must have the same length.")
@@ -527,9 +527,9 @@ public class Matrix: Codable {
         return SingularValueDecomposition(paramMatrix: self)
     }
     
-    public func eig() -> EigenvalueDecomposition
+    public func eig() throws -> EigenvalueDecomposition
     {
-        return EigenvalueDecomposition(Arg: self)
+        return try EigenvalueDecomposition(Arg: self)
     }
     
     public func solve(paramMatrix: Matrix) throws -> Matrix
@@ -598,4 +598,91 @@ public class Matrix: Codable {
             throw MatrixError.IllegalArgumentException(info: "Matrix dimensions must agree.")
         }
     }
+    
+    //    public void print(int paramInt1, int paramInt2)
+    //{
+    //    print(new PrintWriter(System.out, true), paramInt1, paramInt2)
+    //    }
+    //
+    //    public void print(PrintWriter paramPrintWriter, int paramInt1, int paramInt2)
+    //{
+    //    DecimalFormat localDecimalFormat = new DecimalFormat()
+    //    localDecimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US))
+    //    localDecimalFormat.setMinimumIntegerDigits(1)
+    //    localDecimalFormat.setMaximumFractionDigits(paramInt2)
+    //    localDecimalFormat.setMinimumFractionDigits(paramInt2)
+    //    localDecimalFormat.setGroupingUsed(false)
+    //    print(paramPrintWriter, localDecimalFormat, paramInt1 + 2)
+    //    }
+    //
+    //    public void print(NumberFormat paramNumberFormat, int paramInt)
+    //{
+    //    print(new PrintWriter(System.out, true), paramNumberFormat, paramInt)
+    //    }
+    //
+    //    public func print(PrintWriter paramPrintWriter, NumberFormat paramNumberFormat, int paramInt)
+    //    {
+    //    paramPrintWriter.println()
+    //    for (int i = 0 i < self.m i++)
+    //    {
+    //    for (int j = 0 j < self.n j++)
+    //    {
+    //    String str = paramNumberFormat.format(self.A[i][j])
+    //    int k = Math.max(1, paramInt - str.length())
+    //    for (int i1 = 0 i1 < k i1++) {
+    //    paramPrintWriter.print(' ')
+    //    }
+    //    paramPrintWriter.print(str)
+    //    }
+    //    paramPrintWriter.println()
+    //    }
+    //    paramPrintWriter.println()
+    //    }
+    
+    //    public static Matrix read(BufferedReader paramBufferedReader)
+    //    throws IOException
+    //    {
+    //    StreamTokenizer localStreamTokenizer = new StreamTokenizer(paramBufferedReader)
+    //
+    //    localStreamTokenizer.resetSyntax()
+    //    localStreamTokenizer.wordChars(0, 255)
+    //    localStreamTokenizer.whitespaceChars(0, 32)
+    //    localStreamTokenizer.eolIsSignificant(true)
+    //    Vector localVector1 = new Vector()
+    //    while (localStreamTokenizer.nextToken() == 10) {}
+    //    if (localStreamTokenizer.ttype == -1) {
+    //    throw new IOException("Unexpected EOF on matrix read.")
+    //    }
+    //    do
+    //    {
+    //    localVector1.addElement(Double.valueOf(localStreamTokenizer.sval))
+    //    } while (localStreamTokenizer.nextToken() == -3)
+    //    int i = localVector1.size()
+    //    double[] arrayOfDouble = new double[i]
+    //    for (int j = 0 j < i j++) {
+    //    arrayOfDouble[j] = ((Double)localVector1.elementAt(j)).doubleValue()
+    //    }
+    //    Vector localVector2 = new Vector()
+    //    localVector2.addElement(arrayOfDouble)
+    //    while (localStreamTokenizer.nextToken() == -3)
+    //    {
+    //    localVector2.addElement(arrayOfDouble = new double[i])
+    //    k = 0
+    //    do
+    //    {
+    //    if (k >= i) {
+    //    throw new IOException("Row " + localVector2.size() + " is too long.")
+    //    }
+    //    arrayOfDouble[(k++)] = Double.valueOf(localStreamTokenizer.sval).doubleValue()
+    //    } while (localStreamTokenizer.nextToken() == -3)
+    //    if (k < i) {
+    //    throw new IOException("Row " + localVector2.size() + " is too short.")
+    //    }
+    //    }
+    //    int k = localVector2.size()
+    //    double[][] arrayOfDouble1 = new double[k][]
+    //    localVector2.copyInto(arrayOfDouble1)
+    //    return new Matrix(arrayOfDouble1)
+    //    }
+    
 }

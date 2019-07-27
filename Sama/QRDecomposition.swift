@@ -22,10 +22,10 @@ public class QRDecomposition: Codable
         self.n = paramMatrix.getColumnDimension()
         self.Rdiag = [Double].init(repeating: 0.0, count: self.n)
         
-        for i in 0 ..< self.n
+        for i in stride(from: 0, to: self.n, by: 1)
         {
             var d1: Double = 0.0
-            for j in i ..< self.m {
+            for j in stride(from: i, to: self.m, by: 1) {
                 d1 = hypot(d1, self.QR[j][i])
             }
             if (d1 != 0.0)
@@ -33,18 +33,18 @@ public class QRDecomposition: Codable
                 if (self.QR[i][i] < 0.0) {
                     d1 = -d1
                 }
-                for j in i ..< self.m {
+                for j in stride(from: i, to: self.m, by: 1) {
                     self.QR[j][i] /= d1
                 }
                 self.QR[i][i] += 1.0
-                for j in i + 1 ..< self.n
+                for j in stride(from: i + 1, to: self.n, by: 1)
                 {
                     var d2: Double = 0.0
-                    for k in i ..< self.m {
+                    for k in stride(from: i, to: self.m, by: 1) {
                         d2 += self.QR[k][i] * self.QR[k][j]
                     }
                     d2 = -d2 / self.QR[i][i]
-                    for k in i ..< self.m {
+                    for k in stride(from: i, to: self.m, by: 1) {
                         self.QR[k][j] += d2 * self.QR[k][i]
                     }
                 }
@@ -98,7 +98,7 @@ public class QRDecomposition: Codable
     public func getQ() -> Matrix
     {
         let localMatrix = Matrix(paramInt1: self.m, paramInt2: self.n)
-        for  i in (0 ... self.n - 1).reversed()
+        for  i in stride(from: self.n - 1, through: 0, by: -1)
         {
             for j in 0 ..< self.m {
                 localMatrix.A[j][i] = 0.0
@@ -144,7 +144,7 @@ public class QRDecomposition: Codable
                 }
             }
         }
-        for j in (0 ... self.n - 1).reversed()
+        for j in stride(from: self.n - 1, through: 0, by: -1)
         {
             for k in 0 ..< i {
                 arrayOfDouble[j][k] /= self.Rdiag[j]
