@@ -36,7 +36,7 @@ public class Matrix: Codable {
     {
         self.m = paramArrayOfDouble.count
         self.n = paramArrayOfDouble[0].count
-        for i in 0 ..< self.m {
+        for i in stride(from: 0, to: self.m, by: 1) {
             if (paramArrayOfDouble[i].count != self.n) {
                 throw MatrixError.IllegalArgumentException(info: "All rows must have the same length.")
             }
@@ -60,8 +60,8 @@ public class Matrix: Codable {
         }
         self.A =  [[Double]].init(repeating: [Double].init(repeating: 0.0, count: self.n), count: paramInt)
         
-        for i in 0 ..< paramInt {
-            for j in 0 ..< self.n {
+        for i in stride(from: 0, to: paramInt, by: 1) {
+            for j in stride(from: 0, to: self.n, by: 1) {
                 self.A[i][j] = paramArrayOfDouble[(i + j * paramInt)]
             }
         }
@@ -72,7 +72,7 @@ public class Matrix: Codable {
         let i = paramArrayOfDouble.count
         let j = paramArrayOfDouble[0].count
         let localMatrix = Matrix(paramInt1: i, paramInt2: j)
-        for k in 0 ..< i
+        for k in stride(from: 0, to: i, by: 1)
         {
             if (paramArrayOfDouble[k].count != j) {
                 throw MatrixError.IllegalArgumentException(info: "All rows must have the same length.")
@@ -527,9 +527,9 @@ public class Matrix: Codable {
         return SingularValueDecomposition(paramMatrix: self)
     }
     
-    public func eig() -> EigenvalueDecomposition
+    public func eig() throws -> EigenvalueDecomposition
     {
-        return EigenvalueDecomposition(Arg: self)
+        return try EigenvalueDecomposition(Arg: self)
     }
     
     public func solve(paramMatrix: Matrix) throws -> Matrix
@@ -537,10 +537,10 @@ public class Matrix: Codable {
         return try self.m == self.n ? LUDecomposition(A: self).solve(B: paramMatrix) : QRDecomposition(paramMatrix: self).solve(paramMatrix: paramMatrix)
     }
     
-    //    public func solveTranspose(paramMatrix: Matrix) -> Matrix
-    //    {
-    //        return transpose().solve(paramMatrix: paramMatrix.transpose())
-    //    }
+    public func solveTranspose(paramMatrix: Matrix) throws -> Matrix
+    {
+        return try transpose().solve(paramMatrix: paramMatrix.transpose())
+    }
     
     public func inverse() throws -> Matrix
     {

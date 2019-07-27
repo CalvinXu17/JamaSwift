@@ -82,7 +82,7 @@ public class LUDecomposition: Codable {
             // Find pivot and exchange if necessary.
             
             var p: Int = j
-            for i in j + 1 ..< m {
+            for i in stride(from: j + 1, to: m, by: 1) {
                 if (abs(LUcolj[i]) > abs(LUcolj[p])) {
                     p = i
                 }
@@ -101,9 +101,11 @@ public class LUDecomposition: Codable {
             
             // Compute multipliers.
             
-            if ((j < self.m ? 1 : 0) & (self.LU[j][j] != 0.0 ? 1 : 0)) != 0 {
+            if j <= LU.count - 1 && j <= LU[j].count - 1 && ((j < self.m ? 1 : 0) & (self.LU[j][j] != 0.0 ? 1 : 0)) != 0 {
                 for i in j + 1 ..< self.m {
-                    LU[i][j] /= LU[j][j]
+                    if i <= LU.count - 1 && j <= LU[i].count - 1 && j <= LU.count - 1 {
+                        LU[i][j] /= LU[j][j]
+                    }
                 }
             }
         }
@@ -225,7 +227,7 @@ public class LUDecomposition: Codable {
             }
         }
         // Solve U*X = Y
-        for k in (0 ... n - 1).reversed() {
+        for k in stride(from: n - 1, through: 0, by: -1) {
             for j in 0 ..< nx {
                 Xmat.A[k][j] /= LU[k][k]
             }
