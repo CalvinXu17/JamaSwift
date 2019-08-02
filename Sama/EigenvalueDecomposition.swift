@@ -105,7 +105,7 @@ public class EigenvalueDecomposition: Codable {
                     f = d[j]
                     V[j][i] = f
                     g = e[j] + V[j][j] * f
-                    for k in j + 1 ... i - 1 {
+                    for k in stride(from: j + 1, through: i - 1, by: 1) {
                         g += V[k][j] * d[k]
                         e[k] += V[k][j] * f
                     }
