@@ -2,7 +2,7 @@
 //  EigenvalueDecomposition.swift
 //  Sama
 //
-//  Created by Calvin on 2019/7/13.
+//  Created by Calvin on 2019/7/13. 
 //  Copyright © 2019 Calvin. All rights reserved.
 //
 
