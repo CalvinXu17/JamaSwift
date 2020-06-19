@@ -6,7 +6,7 @@
     If there is something wrong, please tell me as soon as possible.
 
 # Usage
-    It's Class and Method are the same as Jama, so you can google Jama for it's usage.
+    Its Class and Method are the same as Jama, so you can google Jama for it's usage.
 
 # 欢迎加群905506227交流讨论
     感谢Jama团队开放的源代码
